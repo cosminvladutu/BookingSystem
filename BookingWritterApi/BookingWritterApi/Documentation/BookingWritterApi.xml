@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BookingWritterApi</name>
+    </assembly>
+    <members>
+        <member name="M:BookingWritterApi.Controllers.BookingController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BookingWritterApi.Controllers.BookingController"/> class (the class that contains all the actions
+            that change a booking).
+            </summary>
+        </member>
+        <member name="M:BookingWritterApi.Controllers.BookingController.Create(BookingWritterApi.Infrastructure.ViewModels.BookingVm)">
+            <summary>
+            Saves a new booking.
+            </summary>
+            <param name="vm">The booking view model, that contains the information regarding the booking that will be saved.</param>
+        </member>
+        <member name="T:BookingWritterApi.Infrastructure.Middleware.ExceptionHandlingMiddlewareExtensions">
+            <summary>
+                Extension method used to add the middleware to the HTTP request pipeline.
+            </summary>
+        </member>
+        <member name="M:BookingWritterApi.Infrastructure.Middleware.ExceptionHandlingMiddlewareExtensions.UseExceptionHandlingMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+                Uses the exception handling middleware.
+            </summary>
+            <param name="builder">The builder.</param>
+            <returns>The application builder with exception handler added.</returns>
+        </member>
+        <member name="P:BookingWritterApi.Infrastructure.ViewModels.BookingVm.Id">
+            <summary>
+            The identifier of the booking, so that if 2 bookings will be received with the same id we will not save 2 different
+            bookings.
+            </summary>
+        </member>
+        <member name="P:BookingWritterApi.Infrastructure.ViewModels.BookingVm.UserId">
+            <summary>
+            The identifier of the user who made the booking.
+            </summary>
+        </member>
+        <member name="P:BookingWritterApi.Infrastructure.ViewModels.BookingVm.RoomId">
+            <summary>
+            The Room identifier.
+            </summary>
+        </member>
+        <member name="P:BookingWritterApi.Infrastructure.ViewModels.BookingVm.StartDate">
+            <summary>
+            The start date of the booking.
+            </summary>
+        </member>
+        <member name="P:BookingWritterApi.Infrastructure.ViewModels.BookingVm.EndDate">
+            <summary>
+            The end date of the booking.
+            </summary>
+        </member>
+    </members>
+</doc>

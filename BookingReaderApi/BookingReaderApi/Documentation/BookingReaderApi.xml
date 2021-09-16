@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BookingReaderApi</name>
+    </assembly>
+    <members>
+        <member name="M:BookingReaderApi.Controllers.BookingController.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BookingReaderApi.Controllers.BookingController"/> class (the class that contains all the actions
+            that change a booking).
+            </summary>
+        </member>
+        <member name="M:BookingReaderApi.Controllers.BookingController.List">
+            <summary>
+            Gets all bookings.
+            </summary>
+        </member>
+        <member name="M:BookingReaderApi.Controllers.BookingController.Get(System.Guid)">
+            <summary>
+            Get a specific booking.
+            </summary>
+            <param name="bookingId">Identifier for the booking.</param>
+            <returns>The booking with the specified id.</returns>
+        </member>
+        <member name="T:BookingReaderApi.Infrastructure.Middleware.ExceptionHandlingMiddlewareExtensions">
+            <summary>
+                Extension method used to add the middleware to the HTTP request pipeline.
+            </summary>
+        </member>
+        <member name="M:BookingReaderApi.Infrastructure.Middleware.ExceptionHandlingMiddlewareExtensions.UseExceptionHandlingMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+                Uses the exception handling middleware.
+            </summary>
+            <param name="builder">The builder.</param>
+            <returns>The application builder with exception handler added.</returns>
+        </member>
+    </members>
+</doc>
