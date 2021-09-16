@@ -10,10 +10,13 @@
             that change a booking).
             </summary>
         </member>
-        <member name="M:BookingReaderApi.Controllers.BookingController.List">
+        <member name="M:BookingReaderApi.Controllers.BookingController.List(System.Guid,BookingReaderApi.Infrastructure.ViewModels.ListType)">
             <summary>
-            Gets all bookings.
+            Gets bookings based on an user and on the type of bookings the query is made.
             </summary>
+            <param name="userId">User identifier.</param>
+            <param name="listType">The type of bookings: all bookings, the inactive onces or the active.</param>
+            <returns>A list of bookings</returns>
         </member>
         <member name="M:BookingReaderApi.Controllers.BookingController.Get(System.Guid)">
             <summary>

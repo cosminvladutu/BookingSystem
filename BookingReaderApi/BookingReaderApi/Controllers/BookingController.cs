@@ -20,18 +20,6 @@ namespace BookingReaderApi.Controllers
         {
 
         }
-        /// <summary>
-        /// Gets all the active bookings.
-        /// </summary>
-        [HttpGet]
-        [SwaggerResponse((int)HttpStatusCode.OK, type: typeof(ListOfBookingsQueryResponse))]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-        [SwaggerResponse((int)HttpStatusCode.InternalServerError, type: typeof(ErrorViewModel))]
-
-        public async Task<ListOfBookingsQueryResponse> List([FromRoute] Guid userId)
-        {
-            return null;
-        }
 
         /// <summary>
         /// Get a specific booking.
@@ -49,18 +37,18 @@ namespace BookingReaderApi.Controllers
         }
 
         /// <summary>
-        /// Get a specific booking.
+        /// Gets bookings based on an user and on the type of bookings the query is made.
         /// </summary>
-        /// <param name="userId">Identifier for the user.</param>
-        /// <returns>The booking history for the specified user.</returns>
+        /// <param name="userId">User identifier.</param>
+        /// <param name="listType">The type of bookings: 1 for all bookings, 2 for the inactive ones or 3 for the active ones.</param>
+        /// <returns>A list of bookings</returns>
         [HttpGet]
-        [Route("{userId}/history")]
-
-
-        [SwaggerResponse((int)HttpStatusCode.OK, type: typeof(GetBookingQueryResponse))]
-        [SwaggerResponse((int)HttpStatusCode.InternalServerError, type: typeof(ErrorViewModel))]
+        [Route("{userId}")]
+        [SwaggerResponse((int)HttpStatusCode.OK, type: typeof(ListOfBookingsQueryResponse))]
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-        public async Task<GetBookingQueryResponse> GetHistoryForSpecificUser([FromRoute] Guid userId)
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, type: typeof(ErrorViewModel))]
+
+        public async Task<ListOfBookingsQueryResponse> List([FromRoute] Guid userId, [FromQuery]ListType listType)
         {
             return null;
         }
