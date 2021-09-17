@@ -4,4 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Booking.Contracts\Booking.Contracts.csproj" />
+    <ProjectReference Include="..\Booking.Messages.Commands\Booking.Messages.Commands.csproj" />
+  </ItemGroup>
+
 </Project>

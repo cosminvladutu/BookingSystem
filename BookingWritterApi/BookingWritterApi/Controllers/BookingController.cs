@@ -36,10 +36,10 @@ namespace BookingWritterApi.Controllers
                 return BadRequest();
             }
 
-           var result = await _mediator.Send(vm.ToCreateCommand());
+           await _mediator.Send(vm.ToCreateCommand());
 
             Response.StatusCode = 201;
-            return result;
+            return null;
         }
     }
 }

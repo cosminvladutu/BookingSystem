@@ -10,7 +10,8 @@ namespace BookingWritterApi.Infrastructure.Extensions
         public static void RegisterMediatrServices(this IServiceCollection services)
         {
             services.AddMediatR(typeof(MediatrAssemblyInfo).Assembly);
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(MediatrPipeline<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(MediatrSendPipeline<,>));
+            services.Decorate(typeof(INotificationHandler<>), typeof(LogMediatRNotificationDecorator<>));
         }
     }
 }

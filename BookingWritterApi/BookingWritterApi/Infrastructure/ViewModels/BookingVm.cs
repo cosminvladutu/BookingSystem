@@ -1,5 +1,4 @@
-﻿using Booking.Messages.Commands;
-using MediatR;
+﻿using Booking.Messages;
 using System;
 
 namespace BookingWritterApi.Infrastructure.ViewModels

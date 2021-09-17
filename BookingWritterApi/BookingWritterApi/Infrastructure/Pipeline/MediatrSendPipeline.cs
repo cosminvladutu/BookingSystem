@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookingWritterApi.Infrastructure.Pipeline
 {
-    public class MediatrPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class MediatrSendPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {

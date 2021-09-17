@@ -1,15 +1,14 @@
-﻿using MediatR;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Booking.Messages
+namespace Booking.Models
 {
-    public class CreateBookingCommandRequest : INotification
+    public class BookingItem
     {
         public Guid Id { get; set; }
-
         public Guid UserId { get; set; }
 
-        public Guid RoomId { get; set; }
+        public IList<Guid> RoomList { get; set; }
 
         public DateTime StartDate { get; set; }
 
