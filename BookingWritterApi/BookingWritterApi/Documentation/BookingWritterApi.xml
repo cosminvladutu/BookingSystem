@@ -4,7 +4,7 @@
         <name>BookingWritterApi</name>
     </assembly>
     <members>
-        <member name="M:BookingWritterApi.Controllers.BookingController.#ctor">
+        <member name="M:BookingWritterApi.Controllers.BookingController.#ctor(MediatR.IMediator)">
             <summary>
             Initializes a new instance of the <see cref="T:BookingWritterApi.Controllers.BookingController"/> class (the class that contains all the actions
             that change a booking).
@@ -16,12 +16,12 @@
             </summary>
             <param name="vm">The booking view model, that contains the information regarding the booking that will be saved.</param>
         </member>
-        <member name="T:BookingWritterApi.Infrastructure.Middleware.ExceptionHandlingMiddlewareExtensions">
+        <member name="T:BookingWritterApi.Infrastructure.Extensions.ExceptionHandlingMiddlewareExtensions">
             <summary>
                 Extension method used to add the middleware to the HTTP request pipeline.
             </summary>
         </member>
-        <member name="M:BookingWritterApi.Infrastructure.Middleware.ExceptionHandlingMiddlewareExtensions.UseExceptionHandlingMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:BookingWritterApi.Infrastructure.Extensions.ExceptionHandlingMiddlewareExtensions.UseExceptionHandlingMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
                 Uses the exception handling middleware.
             </summary>

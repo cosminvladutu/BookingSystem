@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Booking.Messages.Commands;
+using MediatR;
+using System;
 
 namespace BookingWritterApi.Infrastructure.ViewModels
 {
@@ -30,6 +32,32 @@ namespace BookingWritterApi.Infrastructure.ViewModels
         /// </summary>
         public DateTime EndDate { get; set; }
 
+        internal bool IsValid()
+        {
+            if (Id == Guid.Empty || UserId == Guid.Empty || RoomId == Guid.Empty || StartDate == DateTime.MinValue
+                || EndDate == DateTime.MinValue || StartDate == DateTime.MaxValue || EndDate == DateTime.MaxValue || StartDate > EndDate)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
 
+    public static class BookingVmExtensions
+    {
+        internal static CreateBookingCommandRequest ToCreateCommand(this BookingVm vm)
+        {
+            return new CreateBookingCommandRequest
+            {
+                Id = vm.Id,
+                UserId = vm.UserId,
+                RoomId = vm.RoomId,
+                StartDate = vm.StartDate,
+                EndDate = vm.EndDate
+            };
+        }
     }
 }

@@ -1,4 +1,4 @@
-using BookingWritterApi.Infrastructure.Middleware;
+using BookingWritterApi.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +25,7 @@ namespace BookingWritterApi
         {
 
             services.AddControllers();
+            services.RegisterMediatrServices();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookingWritterApi", Version = "v1" });
