@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingWritterApi", "BookingWritterApi\BookingWritterApi.csproj", "{46DB11C1-02C5-4A77-B212-57D0DC242331}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingWritterApi", "BookingWritterApi\BookingWritterApi.csproj", "{46DB11C1-02C5-4A77-B212-57D0DC242331}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Presentation", "01 Presentation", "{FBD98845-9FBE-4B2E-829B-040E6833D02B}"
 EndProject
@@ -23,13 +23,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{3E982860-672B-491D-89BF-3DBF8B8636AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Actions.Commands", "Booking.Actions.Commands\Booking.Actions.Commands.csproj", "{CD03D6EA-EF25-40BB-AE6F-527B1562E865}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Actions.Commands", "Booking.Actions.Commands\Booking.Actions.Commands.csproj", "{CD03D6EA-EF25-40BB-AE6F-527B1562E865}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Messages.Commands", "Booking.Messages.Commands\Booking.Messages.Commands.csproj", "{FA1EE5D9-0D03-4EBB-8B9E-9A0E99C72300}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Messages.Commands", "Booking.Messages.Commands\Booking.Messages.Commands.csproj", "{FA1EE5D9-0D03-4EBB-8B9E-9A0E99C72300}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Contracts", "Booking.Contracts\Booking.Contracts.csproj", "{026FBA2E-AEAB-4549-9ADC-69DF6E5120BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Contracts", "Booking.Contracts\Booking.Contracts.csproj", "{026FBA2E-AEAB-4549-9ADC-69DF6E5120BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Models", "Booking.Models\Booking.Models.csproj", "{4DD8E075-4295-4C05-A4B4-94EC8BDDFEE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Models", "Booking.Models\Booking.Models.csproj", "{4DD8E075-4295-4C05-A4B4-94EC8BDDFEE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Persistence", "Booking.Persistence\Booking.Persistence.csproj", "{B70B0200-F5E1-4A97-9948-0211576F50FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{4DD8E075-4295-4C05-A4B4-94EC8BDDFEE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DD8E075-4295-4C05-A4B4-94EC8BDDFEE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DD8E075-4295-4C05-A4B4-94EC8BDDFEE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B70B0200-F5E1-4A97-9948-0211576F50FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B70B0200-F5E1-4A97-9948-0211576F50FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B70B0200-F5E1-4A97-9948-0211576F50FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B70B0200-F5E1-4A97-9948-0211576F50FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{FA1EE5D9-0D03-4EBB-8B9E-9A0E99C72300} = {A80165B8-8A9E-4B31-BEE1-5B95BE0CE752}
 		{026FBA2E-AEAB-4549-9ADC-69DF6E5120BC} = {E1B5644B-0F63-44D0-B791-ADC659BD0C20}
 		{4DD8E075-4295-4C05-A4B4-94EC8BDDFEE8} = {E1B5644B-0F63-44D0-B791-ADC659BD0C20}
+		{B70B0200-F5E1-4A97-9948-0211576F50FA} = {3E982860-672B-491D-89BF-3DBF8B8636AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF168D7D-3599-4BFE-8949-581BD2239293}

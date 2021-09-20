@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Booking.Models
+namespace Booking.Persistence.Models
 {
     public class Hotel
     {

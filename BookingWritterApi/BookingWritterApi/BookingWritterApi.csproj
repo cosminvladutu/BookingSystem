@@ -14,6 +14,7 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Scrutor" Version="3.3.0" />
     <PackageReference Include="Serilog" Version="2.10.0" />
@@ -24,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Booking.Actions.Commands\Booking.Actions.Commands.csproj" />
     <ProjectReference Include="..\Booking.Messages.Commands\Booking.Messages.Commands.csproj" />
+    <ProjectReference Include="..\Booking.Persistence\Booking.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
