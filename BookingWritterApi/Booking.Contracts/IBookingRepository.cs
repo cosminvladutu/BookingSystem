@@ -6,9 +6,9 @@ namespace Booking.Contracts
     public interface IBookingRepository
     {
         /// <summary>
-        /// Create a Booking.
+        /// Save a Booking.
         /// </summary>
-        /// <param name="tenant">Tenant.</param>
-        Task Create(Models.Booking tenant);
+        /// <param name="booking">The booking.</param>
+        Task Save(Models.Booking booking);
     }
 }

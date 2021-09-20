@@ -44,6 +44,11 @@
             The Room identifier.
             </summary>
         </member>
+        <member name="P:BookingWritterApi.Infrastructure.ViewModels.BookingVm.HotelId">
+            <summary>
+            The Hotel identifier.
+            </summary>
+        </member>
         <member name="P:BookingWritterApi.Infrastructure.ViewModels.BookingVm.StartDate">
             <summary>
             The start date of the booking.

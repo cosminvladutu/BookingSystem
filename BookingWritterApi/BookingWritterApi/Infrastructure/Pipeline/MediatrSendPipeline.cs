@@ -18,7 +18,6 @@ namespace BookingWritterApi.Infrastructure.Pipeline
             Log.Information("Start " + typeof(TRequest).Name);
 
             Log.Verbose($"Request data: {request}");
-
             var response = await next();
 
             Log.Information("End " + typeof(TRequest).Name);

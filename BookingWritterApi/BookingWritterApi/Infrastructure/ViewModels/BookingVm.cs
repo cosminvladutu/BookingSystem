@@ -22,6 +22,11 @@ namespace BookingWritterApi.Infrastructure.ViewModels
         public Guid RoomId { get; set; }
 
         /// <summary>
+        /// The Hotel identifier.
+        /// </summary>
+        public Guid HotelId { get; set; }
+
+        /// <summary>
         /// The start date of the booking.
         /// </summary>
         public DateTime StartDate { get; set; }
@@ -33,7 +38,7 @@ namespace BookingWritterApi.Infrastructure.ViewModels
 
         internal bool IsValid()
         {
-            if (Id == Guid.Empty || UserId == Guid.Empty || RoomId == Guid.Empty || StartDate == DateTime.MinValue
+            if (Id == Guid.Empty || UserId == Guid.Empty || RoomId == Guid.Empty || HotelId == Guid.Empty || StartDate == DateTime.MinValue
                 || EndDate == DateTime.MinValue || StartDate == DateTime.MaxValue || EndDate == DateTime.MaxValue || StartDate > EndDate)
             {
                 return false;
@@ -54,6 +59,7 @@ namespace BookingWritterApi.Infrastructure.ViewModels
                 Id = vm.Id,
                 UserId = vm.UserId,
                 RoomId = vm.RoomId,
+                HotelId = vm.HotelId,
                 StartDate = vm.StartDate,
                 EndDate = vm.EndDate
             };

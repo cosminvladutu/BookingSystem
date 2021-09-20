@@ -15,9 +15,9 @@ namespace Booking.Actions.Commands
         }
         public Task Handle(CreateBookingCommandRequest notification, CancellationToken cancellationToken)
         {
-            var booking = new Models.Booking();
+            var booking = Models.Booking.Create(notification);
 
-            // Create the booking based on the notification.
+            _repo.Save(booking);
 
             return Task.CompletedTask;
         }
