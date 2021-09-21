@@ -1,5 +1,6 @@
 ﻿using BookingWritterApi.Infrastructure.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Swashbuckle.AspNetCore.Annotations;
@@ -30,7 +31,7 @@ namespace BookingWritterApi.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK)]
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, type: typeof(ErrorViewModel))]
-        public async Task<IActionResult> Create([FromBody] BookingVm vm)
+        public async Task<ActionResult> Create([FromBody] BookingVm vm)
         {
             if (vm == null || !vm.IsValid())
             {
@@ -40,8 +41,7 @@ namespace BookingWritterApi.Controllers
 
            await _mediator.Publish(vm.ToCreateCommand());
 
-            Response.StatusCode = 201;
-            return null;
+            return Ok();
         }
     }
 }

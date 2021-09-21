@@ -8,6 +8,7 @@ namespace Booking.Persistence
     {
         public DbSet<Entities.Booking> Booking { get; set; }
         public DbSet<Entities.Hotel> Hotel { get; set; }
+        public DbSet<Entities.Room> Room { get; set; }
         public DbSet<Entities.User> User { get; set; }
 
         public BookingDbContext(DbContextOptions<BookingDbContext> options) : base(options)
