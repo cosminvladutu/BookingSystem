@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Booking.Persistence.Migrations
 {
-    public partial class first : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace Booking.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Desciption = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNo = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -45,7 +45,7 @@ namespace Booking.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HotelId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    HotelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,7 +55,7 @@ namespace Booking.Persistence.Migrations
                         column: x => x.HotelId,
                         principalTable: "Hotel",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -92,6 +92,39 @@ namespace Booking.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Hotel",
+                columns: new[] { "Id", "Address", "Description", "Email", "Name", "PhoneNo" },
+                values: new object[,]
+                {
+                    { new Guid("e8457c0d-18d4-420b-ad23-e032dbe146ce"), "testAddress", "testDescription", "test@testing.com", "testHotelName", "074123456789" },
+                    { new Guid("7ba931e3-9f95-489f-8ae4-ed1fda8e0365"), "testAddressHotel2", "testDescriptionHotel2", "test2@testing.com", "testHotelName2", "074123456123" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "Email", "FirstName", "LastName", "PhoneNo", "Username" },
+                values: new object[,]
+                {
+                    { new Guid("bbfcbbb8-fa3e-4f08-ba49-ec7430faac93"), "test@testing.com", "testFirstName", "testLastName", "074123456789", "testUser" },
+                    { new Guid("59368fd2-2432-4593-a51b-c3f8f8ab4dbc"), "test2@testing.com", "test2FirstName", "test2LastName", "074123456712", "testUser2" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Room",
+                columns: new[] { "Id", "Description", "HotelId" },
+                values: new object[] { new Guid("c3988c86-d83b-47ae-bd72-d503e7eafd0b"), "testRoomDescr", new Guid("e8457c0d-18d4-420b-ad23-e032dbe146ce") });
+
+            migrationBuilder.InsertData(
+                table: "Room",
+                columns: new[] { "Id", "Description", "HotelId" },
+                values: new object[] { new Guid("0087a0b6-a808-4a02-b038-5b96fcc1f6bf"), "testRoomDescr", new Guid("7ba931e3-9f95-489f-8ae4-ed1fda8e0365") });
+
+            migrationBuilder.InsertData(
+                table: "Room",
+                columns: new[] { "Id", "Description", "HotelId" },
+                values: new object[] { new Guid("d274196d-96f9-437e-98ea-0f312b9dbd78"), "testRoomDescr", new Guid("7ba931e3-9f95-489f-8ae4-ed1fda8e0365") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Booking_HotelId",

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Booking.Persistence.Migrations
 {
     [DbContext(typeof(BookingDbContext))]
-    [Migration("20210921092601_first")]
-    partial class first
+    [Migration("20210921194518_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Booking.Persistence.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Booking.Persistence.Models.Booking", b =>
+            modelBuilder.Entity("Booking.Persistence.Entities.Booking", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +56,7 @@ namespace Booking.Persistence.Migrations
                     b.ToTable("Booking");
                 });
 
-            modelBuilder.Entity("Booking.Persistence.Models.Hotel", b =>
+            modelBuilder.Entity("Booking.Persistence.Entities.Hotel", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +65,7 @@ namespace Booking.Persistence.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Desciption")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -80,9 +80,29 @@ namespace Booking.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Hotel");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("e8457c0d-18d4-420b-ad23-e032dbe146ce"),
+                            Address = "testAddress",
+                            Description = "testDescription",
+                            Email = "test@testing.com",
+                            Name = "testHotelName",
+                            PhoneNo = "074123456789"
+                        },
+                        new
+                        {
+                            Id = new Guid("7ba931e3-9f95-489f-8ae4-ed1fda8e0365"),
+                            Address = "testAddressHotel2",
+                            Description = "testDescriptionHotel2",
+                            Email = "test2@testing.com",
+                            Name = "testHotelName2",
+                            PhoneNo = "074123456123"
+                        });
                 });
 
-            modelBuilder.Entity("Booking.Persistence.Models.Room", b =>
+            modelBuilder.Entity("Booking.Persistence.Entities.Room", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,7 +111,7 @@ namespace Booking.Persistence.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("HotelId")
+                    b.Property<Guid>("HotelId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -99,9 +119,29 @@ namespace Booking.Persistence.Migrations
                     b.HasIndex("HotelId");
 
                     b.ToTable("Room");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c3988c86-d83b-47ae-bd72-d503e7eafd0b"),
+                            Description = "testRoomDescr",
+                            HotelId = new Guid("e8457c0d-18d4-420b-ad23-e032dbe146ce")
+                        },
+                        new
+                        {
+                            Id = new Guid("0087a0b6-a808-4a02-b038-5b96fcc1f6bf"),
+                            Description = "testRoomDescr",
+                            HotelId = new Guid("7ba931e3-9f95-489f-8ae4-ed1fda8e0365")
+                        },
+                        new
+                        {
+                            Id = new Guid("d274196d-96f9-437e-98ea-0f312b9dbd78"),
+                            Description = "testRoomDescr",
+                            HotelId = new Guid("7ba931e3-9f95-489f-8ae4-ed1fda8e0365")
+                        });
                 });
 
-            modelBuilder.Entity("Booking.Persistence.Models.User", b =>
+            modelBuilder.Entity("Booking.Persistence.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,19 +165,39 @@ namespace Booking.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("bbfcbbb8-fa3e-4f08-ba49-ec7430faac93"),
+                            Email = "test@testing.com",
+                            FirstName = "testFirstName",
+                            LastName = "testLastName",
+                            PhoneNo = "074123456789",
+                            Username = "testUser"
+                        },
+                        new
+                        {
+                            Id = new Guid("59368fd2-2432-4593-a51b-c3f8f8ab4dbc"),
+                            Email = "test2@testing.com",
+                            FirstName = "test2FirstName",
+                            LastName = "test2LastName",
+                            PhoneNo = "074123456712",
+                            Username = "testUser2"
+                        });
                 });
 
-            modelBuilder.Entity("Booking.Persistence.Models.Booking", b =>
+            modelBuilder.Entity("Booking.Persistence.Entities.Booking", b =>
                 {
-                    b.HasOne("Booking.Persistence.Models.Hotel", "Hotel")
+                    b.HasOne("Booking.Persistence.Entities.Hotel", "Hotel")
                         .WithMany()
                         .HasForeignKey("HotelId");
 
-                    b.HasOne("Booking.Persistence.Models.Room", "Room")
+                    b.HasOne("Booking.Persistence.Entities.Room", "Room")
                         .WithMany()
                         .HasForeignKey("RoomId");
 
-                    b.HasOne("Booking.Persistence.Models.User", "User")
+                    b.HasOne("Booking.Persistence.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
@@ -148,14 +208,18 @@ namespace Booking.Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Booking.Persistence.Models.Room", b =>
+            modelBuilder.Entity("Booking.Persistence.Entities.Room", b =>
                 {
-                    b.HasOne("Booking.Persistence.Models.Hotel", null)
+                    b.HasOne("Booking.Persistence.Entities.Hotel", "Hotel")
                         .WithMany("RoomList")
-                        .HasForeignKey("HotelId");
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
                 });
 
-            modelBuilder.Entity("Booking.Persistence.Models.Hotel", b =>
+            modelBuilder.Entity("Booking.Persistence.Entities.Hotel", b =>
                 {
                     b.Navigation("RoomList");
                 });

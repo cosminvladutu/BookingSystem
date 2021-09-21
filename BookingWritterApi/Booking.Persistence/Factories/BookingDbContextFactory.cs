@@ -29,7 +29,8 @@ namespace Booking.Persistence.Factories
 
 
             var optionsBuilder = new DbContextOptionsBuilder<BookingDbContext>()
-               .UseSqlServer(_connectionStringProvider.GetByName("Default"));
+               .UseSqlServer(_connectionStringProvider.GetByName("Default"))
+               .EnableSensitiveDataLogging();
             return new BookingDbContext(optionsBuilder.Options);
 
 

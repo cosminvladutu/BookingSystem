@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Booking.Persistence.Models
+namespace Booking.Persistence.Entities
 {
     public class Booking
     {

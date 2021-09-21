@@ -13,9 +13,9 @@ namespace Booking.Persistence
         {
             _dbContext = dbContext;
         }
-        public async Task Save(Booking.Models.Booking booking)
+        public async Task Save(Models.Booking booking)
         {
-            var toSave = new Models.Booking();
+            var toSave = new Entities.Booking();
             await _dbContext.Booking.AddAsync(toSave);
             await _dbContext.SaveChangesAsync();
         }

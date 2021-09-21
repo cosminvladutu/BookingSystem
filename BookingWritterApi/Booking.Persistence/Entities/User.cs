@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Booking.Persistence.Models
+namespace Booking.Persistence.Entities
 {
     public class User
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
         public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
