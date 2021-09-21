@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Booking.Models\Booking.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

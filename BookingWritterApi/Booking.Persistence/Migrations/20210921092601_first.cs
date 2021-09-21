@@ -3,16 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Booking.Persistence.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "dbo");
-
             migrationBuilder.CreateTable(
                 name: "Hotel",
-                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -29,7 +25,6 @@ namespace Booking.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "User",
-                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -46,7 +41,6 @@ namespace Booking.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Room",
-                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -59,7 +53,6 @@ namespace Booking.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_Room_Hotel_HotelId",
                         column: x => x.HotelId,
-                        principalSchema: "dbo",
                         principalTable: "Hotel",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -67,7 +60,6 @@ namespace Booking.Persistence.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Booking",
-                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -75,30 +67,49 @@ namespace Booking.Persistence.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RoomId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    HotelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    RoomId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    HotelId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Booking", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Booking_Hotel_HotelId",
+                        column: x => x.HotelId,
+                        principalTable: "Hotel",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Booking_Room_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Room",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Booking_User_UserId",
                         column: x => x.UserId,
-                        principalSchema: "dbo",
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Booking_HotelId",
+                table: "Booking",
+                column: "HotelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Booking_RoomId",
+                table: "Booking",
+                column: "RoomId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Booking_UserId",
-                schema: "dbo",
                 table: "Booking",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Room_HotelId",
-                schema: "dbo",
                 table: "Room",
                 column: "HotelId");
         }
@@ -106,20 +117,16 @@ namespace Booking.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Booking",
-                schema: "dbo");
+                name: "Booking");
 
             migrationBuilder.DropTable(
-                name: "Room",
-                schema: "dbo");
+                name: "Room");
 
             migrationBuilder.DropTable(
-                name: "User",
-                schema: "dbo");
+                name: "User");
 
             migrationBuilder.DropTable(
-                name: "Hotel",
-                schema: "dbo");
+                name: "Hotel");
         }
     }
 }

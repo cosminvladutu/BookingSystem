@@ -9,7 +9,7 @@ namespace Booking.Persistence.Models
         public DateTime EndDate { get; set; }
         public User User { get; set; }
         public DateTime CreationDate { get; set; }
-        public Guid RoomId { get; set; }
-        public Guid HotelId { get; set; }
+        public Room Room { get; set; }
+        public Hotel Hotel { get; set; }
     }
 }
