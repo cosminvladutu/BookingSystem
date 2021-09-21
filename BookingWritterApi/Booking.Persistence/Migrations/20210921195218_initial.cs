@@ -107,8 +107,8 @@ namespace Booking.Persistence.Migrations
                 columns: new[] { "Id", "Email", "FirstName", "LastName", "PhoneNo", "Username" },
                 values: new object[,]
                 {
-                    { new Guid("bbfcbbb8-fa3e-4f08-ba49-ec7430faac93"), "test@testing.com", "testFirstName", "testLastName", "074123456789", "testUser" },
-                    { new Guid("59368fd2-2432-4593-a51b-c3f8f8ab4dbc"), "test2@testing.com", "test2FirstName", "test2LastName", "074123456712", "testUser2" }
+                    { new Guid("2900d866-69e8-41cb-a2d5-cdbf9e07f964"), "test@testing.com", "testFirstName", "testLastName", "074123456789", "testUser" },
+                    { new Guid("749b75b6-e8d4-4718-a019-3833c980441b"), "test2@testing.com", "test2FirstName", "test2LastName", "074123456712", "testUser2" }
                 });
 
             migrationBuilder.InsertData(

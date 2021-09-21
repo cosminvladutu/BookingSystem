@@ -167,7 +167,7 @@ namespace Booking.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bbfcbbb8-fa3e-4f08-ba49-ec7430faac93"),
+                            Id = new Guid("2900d866-69e8-41cb-a2d5-cdbf9e07f964"),
                             Email = "test@testing.com",
                             FirstName = "testFirstName",
                             LastName = "testLastName",
@@ -176,7 +176,7 @@ namespace Booking.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("59368fd2-2432-4593-a51b-c3f8f8ab4dbc"),
+                            Id = new Guid("749b75b6-e8d4-4718-a019-3833c980441b"),
                             Email = "test2@testing.com",
                             FirstName = "test2FirstName",
                             LastName = "test2LastName",

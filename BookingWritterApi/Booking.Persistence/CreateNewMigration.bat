@@ -1,0 +1,1 @@
+dotnet ef --startup-project ../BookingWritterApi/ migrations add initial
