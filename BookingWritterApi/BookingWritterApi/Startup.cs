@@ -1,3 +1,4 @@
+using Booking.Contracts;
 using Booking.Persistence;
 using BookingWritterApi.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System;
 using System.IO;
 using System.Reflection;
@@ -25,12 +27,8 @@ namespace BookingWritterApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookingDbContext>(options =>
-            {
-                var sp = services.BuildServiceProvider();
-                options.UseSqlServer(Configuration.GetConnectionString("Default"));
-            });
-
+            services.AddDbContext<BookingDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default"),
+                b => b.MigrationsAssembly("Booking.Persistence")));
 
             services.AddControllers();
             services.RegisterMediatrServices();
@@ -42,6 +40,10 @@ namespace BookingWritterApi
                 var commentsFile = Path.Combine(baseDirectory, commentsFileName);
                 c.IncludeXmlComments(commentsFile);
             });
+
+            services.AddTransient<IConnectionStringProvider, ConnectionStringProvider>();
+            services.AddTransient<IBookingRepository, BookingRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +55,8 @@ namespace BookingWritterApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BookingWritterApi v1"));
             }
+            app.UseSerilogRequestLogging();
+
             app.UseExceptionHandlingMiddleware();
 
             app.UseHttpsRedirection();

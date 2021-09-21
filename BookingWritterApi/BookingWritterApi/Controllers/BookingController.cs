@@ -1,6 +1,7 @@
 ﻿using BookingWritterApi.Infrastructure.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 using System.Threading.Tasks;
@@ -33,10 +34,11 @@ namespace BookingWritterApi.Controllers
         {
             if (vm == null || !vm.IsValid())
             {
+                Log.Error($"{nameof(vm)} is invalid or null");
                 return BadRequest();
             }
 
-           await _mediator.Send(vm.ToCreateCommand());
+           await _mediator.Publish(vm.ToCreateCommand());
 
             Response.StatusCode = 201;
             return null;

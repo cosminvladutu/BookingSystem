@@ -1,21 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Booking.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using System;
 
 namespace Booking.Persistence.Factories
 {
     public class BookingDbContextFactory : IDesignTimeDbContextFactory<BookingDbContext>
     {
-        //private readonly IConnectionStringProvider _connectionStringProvider;
+        private readonly IConnectionStringProvider _connectionStringProvider;
 
-        //public BookingDbContextFactory()
-        //{
-        //    _connectionStringProvider = new ConnectionStringProvider();
-        //}
+        public BookingDbContextFactory()
+        {
+            _connectionStringProvider = new ConnectionStringProvider();
+        }
 
-        //internal BookingDbContextFactory(IConnectionStringProvider connectionStringProvider)
-        //{
-        //    _connectionStringProvider = connectionStringProvider;
-        //}
+        internal BookingDbContextFactory(IConnectionStringProvider connectionStringProvider)
+        {
+            _connectionStringProvider = connectionStringProvider;
+        }
 
         public BookingDbContext CreateDbContext(string[] args)
         {
@@ -25,9 +27,15 @@ namespace Booking.Persistence.Factories
 
             //return new BookingDbContext(builder.Options);
 
-            var optionsBuilder = new DbContextOptionsBuilder<BookingDbContext>();
-            optionsBuilder.UseSqlServer(@"Server=COSMIN-VLADUTU\SQLEXPRESS\;Database=db;Trusted_Connection=True;", opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds));
+
+            var optionsBuilder = new DbContextOptionsBuilder<BookingDbContext>()
+               .UseSqlServer(_connectionStringProvider.GetByName("Default"));
             return new BookingDbContext(optionsBuilder.Options);
+
+
+            //var optionsBuilder = new DbContextOptionsBuilder<BookingDbContext>();
+            //optionsBuilder.UseSqlServer(@"Server=COSMIN-VLADUTU\SQLEXPRESS\;Database=TestDb;Trusted_Connection=True;");
+            //return new BookingDbContext(optionsBuilder.Options);
         }
     }
 }

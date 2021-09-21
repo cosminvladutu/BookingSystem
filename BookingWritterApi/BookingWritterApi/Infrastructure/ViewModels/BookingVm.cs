@@ -39,7 +39,7 @@ namespace BookingWritterApi.Infrastructure.ViewModels
         internal bool IsValid()
         {
             if (Id == Guid.Empty || UserId == Guid.Empty || RoomId == Guid.Empty || HotelId == Guid.Empty || StartDate == DateTime.MinValue
-                || EndDate == DateTime.MinValue || StartDate == DateTime.MaxValue || EndDate == DateTime.MaxValue || StartDate > EndDate)
+                || EndDate == DateTime.MinValue || StartDate == DateTime.MaxValue || EndDate == DateTime.MaxValue || StartDate >= EndDate)
             {
                 return false;
             }

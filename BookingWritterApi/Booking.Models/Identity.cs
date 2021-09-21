@@ -8,21 +8,21 @@ namespace Booking.Models
 
         internal static Identity Create(Guid id)
         {
-            Validate();
+            Validate(id);
             return new Identity(id);
         }
 
-        private static void Validate()
-        {
-            throw new NotImplementedException();
-        }
-
-        private Identity(Guid id)
+        private static void Validate(Guid id)
         {
             if (id == Guid.Empty)
             {
                 throw new ArgumentException("Identifier is empty");
             }
+        }
+
+        private Identity(Guid id)
+        {
+            Id = id;
         }
     }
 }
