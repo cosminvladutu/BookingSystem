@@ -1,6 +1,5 @@
 ﻿using BookingWritterApi.Infrastructure.ViewModels;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Swashbuckle.AspNetCore.Annotations;
@@ -39,7 +38,7 @@ namespace BookingWritterApi.Controllers
                 return BadRequest();
             }
 
-           await _mediator.Publish(vm.ToCreateCommand());
+            await _mediator.Publish(vm.ToCreateCommand());
 
             return Ok();
         }
