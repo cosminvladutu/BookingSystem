@@ -1,5 +1,4 @@
 ﻿using BookingReaderApi.Infrastructure.ViewModels;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Serilog;
@@ -26,7 +25,7 @@ namespace BookingReaderApi.Infrastructure.Middleware
             }
             catch (Exception ex)
             {
-                Log.Error($"DR exception: {ex}");
+                Log.Error($"Booking Reader exception: {ex}");
                 await HandleExceptionAsync(httpContext);
             }
         }
@@ -40,22 +39,6 @@ namespace BookingReaderApi.Infrastructure.Middleware
             {
                 ErrorReason = "Internal Server Error from Booking Reader Api.",
             }));
-        }
-    }
-
-    /// <summary>
-    ///     Extension method used to add the middleware to the HTTP request pipeline.
-    /// </summary>
-    public static class ExceptionHandlingMiddlewareExtensions
-    {
-        /// <summary>
-        ///     Uses the exception handling middleware.
-        /// </summary>
-        /// <param name="builder">The builder.</param>
-        /// <returns>The application builder with exception handler added.</returns>
-        public static IApplicationBuilder UseExceptionHandlingMiddleware(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<ExceptionHandlingMiddleware>();
         }
     }
 }

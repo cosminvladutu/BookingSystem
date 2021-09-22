@@ -4,13 +4,13 @@ namespace Booking.Models
 {
     public class BookingLocationIdentifiers
     {
-        public Identity RoomId { get; private set; }
-        public Identity HotelId { get; private set; }
+        public Identity RoomIdentity { get; private set; }
+        public Identity HotelIdentity { get; private set; }
 
         private BookingLocationIdentifiers(Guid roomId, Guid hotelId)
         {
-            RoomId = Identity.Create(roomId);
-            HotelId = Identity.Create(hotelId);
+            RoomIdentity = Identity.Create(roomId);
+            HotelIdentity = Identity.Create(hotelId);
         }
 
         internal static BookingLocationIdentifiers Create(Guid roomId, Guid hotelId)

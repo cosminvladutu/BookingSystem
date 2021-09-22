@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 
 namespace Booking.Persistence
 {
@@ -16,6 +15,13 @@ namespace Booking.Persistence
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Entities.Hotel>().HasMany(s => s.RoomList).WithOne(s => s.Hotel).HasForeignKey(s => s.HotelId);
+            SeedDb(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+        }
+
+        private void SeedDb(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Entities.User>().HasData(
                 new Entities.User
@@ -37,9 +43,9 @@ namespace Booking.Persistence
                    Username = "testUser2",
                    Id = Guid.NewGuid()
                });
-            var hotel1Id=Guid.Parse("e8457c0d-18d4-420b-ad23-e032dbe146ce");
-            var hotel2Id=Guid.Parse("7ba931e3-9f95-489f-8ae4-ed1fda8e0365");
-            var room1Id=Guid.Parse("c3988c86-d83b-47ae-bd72-d503e7eafd0b");
+            var hotel1Id = Guid.Parse("e8457c0d-18d4-420b-ad23-e032dbe146ce");
+            var hotel2Id = Guid.Parse("7ba931e3-9f95-489f-8ae4-ed1fda8e0365");
+            var room1Id = Guid.Parse("c3988c86-d83b-47ae-bd72-d503e7eafd0b");
             var room2Id = Guid.Parse("0087a0b6-a808-4a02-b038-5b96fcc1f6bf");
             var room3Id = Guid.Parse("d274196d-96f9-437e-98ea-0f312b9dbd78");
 
@@ -47,21 +53,20 @@ namespace Booking.Persistence
             {
                 Id = room1Id,
                 Description = "testRoomDescr",
-                HotelId= hotel1Id
+                HotelId = hotel1Id
             };
             var secondRoom = new Entities.Room
             {
                 Id = room2Id,
                 Description = "testRoomDescr",
                 HotelId = hotel2Id
-            }; 
+            };
             var thirdRoom = new Entities.Room
             {
                 Id = room3Id,
                 Description = "testRoomDescr",
                 HotelId = hotel2Id
             };
-            modelBuilder.Entity<Entities.Hotel>().HasMany(s => s.RoomList).WithOne(s => s.Hotel).HasForeignKey(s => s.HotelId);
 
             modelBuilder.Entity<Entities.Hotel>(b =>
             {
@@ -93,7 +98,6 @@ namespace Booking.Persistence
                 secondRoom);
             modelBuilder.Entity<Entities.Room>().HasData(
                 thirdRoom);
-            base.OnModelCreating(modelBuilder);
         }
     }
 }

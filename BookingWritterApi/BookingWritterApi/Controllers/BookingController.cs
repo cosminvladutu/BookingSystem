@@ -31,7 +31,7 @@ namespace BookingWritterApi.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK)]
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, type: typeof(ErrorViewModel))]
-        public async Task<ActionResult> Create([FromBody] BookingVm vm)
+        public async Task<IActionResult> Create([FromBody] BookingVm vm)
         {
             if (vm == null || !vm.IsValid())
             {

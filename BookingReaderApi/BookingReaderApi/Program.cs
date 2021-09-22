@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Serilog;
+using System.Diagnostics;
 
 namespace BookingReaderApi
 {
@@ -21,6 +17,18 @@ namespace BookingReaderApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseSerilog((hostingContext, loggerConfiguration) =>
+                    {
+                        loggerConfiguration
+                            .ReadFrom.Configuration(hostingContext.Configuration)
+                            .Enrich.FromLogContext();
+
+#if DEBUG
+                        // Used to filter out potentially bad data due debugging.
+                        // Very useful when doing Seq dashboards and want to remove logs under debugging session.
+                        loggerConfiguration.Enrich.WithProperty("DebuggerAttached", Debugger.IsAttached);
+#endif
+                    });
                 });
     }
 }

@@ -16,18 +16,19 @@ namespace Booking.Persistence
         public async Task Save(Models.Booking booking)
         {
             var user = _dbContext.User.SingleOrDefault(s => s.Id == booking.Details.UserId.Id);
-            var hotel = _dbContext.Hotel.SingleOrDefault(s => s.Id == booking.Details.Location.HotelId.Id);
-            var room = _dbContext.Room.SingleOrDefault(s => s.Id == booking.Details.Location.RoomId.Id);
+            var hotel = _dbContext.Hotel.SingleOrDefault(s => s.Id == booking.Details.Location.HotelIdentity.Id);
+            var room = _dbContext.Room.SingleOrDefault(s => s.Id == booking.Details.Location.RoomIdentity.Id);
+
             var toSave = new Entities.Booking
             {
-                CreationDate = booking.Details.CreationDate,
+                CreationDate = DateTime.Now,
                 EndDate = booking.Interval.EndDate,
                 StartDate = booking.Interval.StartDate,
-                Id = booking.Id.Id,
+                Id = booking.Identity.Id,
                 User = user,
                 Hotel = hotel,
                 Room = room
-                
+
             };
             await _dbContext.Booking.AddAsync(toSave);
             await _dbContext.SaveChangesAsync();

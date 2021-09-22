@@ -13,13 +13,12 @@ namespace Booking.Actions.Commands
         {
             _repo = repo;
         }
-        public Task Handle(CreateBookingCommandRequest notification, CancellationToken cancellationToken)
+        public async Task Handle(CreateBookingCommandRequest notification, CancellationToken cancellationToken)
         {
             var booking = Models.Booking.Create(notification);
 
-            _repo.Save(booking);
+            await _repo.Save(booking);
 
-            return Task.CompletedTask;
         }
     }
 }

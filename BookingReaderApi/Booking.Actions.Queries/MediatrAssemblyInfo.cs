@@ -1,4 +1,4 @@
-﻿namespace Booking.Actions.Commands
+﻿namespace Booking.Actions.Queries
 {
     public class MediatrAssemblyInfo
     {

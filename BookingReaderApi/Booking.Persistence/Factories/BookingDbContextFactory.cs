@@ -1,26 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace Booking.Persistence.Factories
 {
     public class BookingDbContextFactory : IDesignTimeDbContextFactory<BookingDbContext>
     {
-        private readonly IConnectionStringProvider _connectionStringProvider;
+        private readonly IConfigurationRoot _configurationRoot;
 
-        public BookingDbContextFactory()
+        internal BookingDbContextFactory(IConfigurationRoot configurationRoot)
         {
-            _connectionStringProvider = new ConnectionStringProvider();
-        }
-
-        internal BookingDbContextFactory(IConnectionStringProvider connectionStringProvider)
-        {
-            _connectionStringProvider = connectionStringProvider;
+            _configurationRoot = configurationRoot;
         }
 
         public BookingDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<BookingDbContext>()
-               .UseSqlServer(_connectionStringProvider.GetByName("Default"))
+               .UseSqlServer(_configurationRoot.GetConnectionString("Default"))
                .EnableSensitiveDataLogging();
             return new BookingDbContext(optionsBuilder.Options);
         }
