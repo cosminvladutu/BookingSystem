@@ -33,9 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Models", "Booking.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Persistence", "Booking.Persistence\Booking.Persistence.csproj", "{B70B0200-F5E1-4A97-9948-0211576F50FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseUnitTests", "BaseUnitTests\BaseUnitTests.csproj", "{33A016C2-FC39-4B5E-836D-0CECB7368604}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseUnitTests", "BaseUnitTests\BaseUnitTests.csproj", "{33A016C2-FC39-4B5E-836D-0CECB7368604}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingWritterApi.Tests", "BookingWritterApi.Tests\BookingWritterApi.Tests.csproj", "{AA1EA491-15F8-4759-8985-DAFB99C30358}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingWritterApi.Tests", "BookingWritterApi.Tests\BookingWritterApi.Tests.csproj", "{AA1EA491-15F8-4759-8985-DAFB99C30358}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Actions.Commands.Tests", "Booking.Actions.Commands.Tests\Booking.Actions.Commands.Tests.csproj", "{C176921F-A7DC-4167-AFF2-58C41B69BA05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{AA1EA491-15F8-4759-8985-DAFB99C30358}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA1EA491-15F8-4759-8985-DAFB99C30358}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA1EA491-15F8-4759-8985-DAFB99C30358}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C176921F-A7DC-4167-AFF2-58C41B69BA05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C176921F-A7DC-4167-AFF2-58C41B69BA05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C176921F-A7DC-4167-AFF2-58C41B69BA05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C176921F-A7DC-4167-AFF2-58C41B69BA05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{B70B0200-F5E1-4A97-9948-0211576F50FA} = {3E982860-672B-491D-89BF-3DBF8B8636AB}
 		{33A016C2-FC39-4B5E-836D-0CECB7368604} = {AC597745-F1C0-4B9F-9F8B-889324C17F4D}
 		{AA1EA491-15F8-4759-8985-DAFB99C30358} = {AC597745-F1C0-4B9F-9F8B-889324C17F4D}
+		{C176921F-A7DC-4167-AFF2-58C41B69BA05} = {AC597745-F1C0-4B9F-9F8B-889324C17F4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF168D7D-3599-4BFE-8949-581BD2239293}
