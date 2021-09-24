@@ -1,0 +1,40 @@
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+
+namespace BookingGatewayClient
+{
+    internal static class ServiceRegistrations
+    {
+        public static void ConfigureServices(IServiceCollection builderServices, IConfiguration configuration)
+        {
+            builderServices.AddFeature(configuration)
+                .AddHttpClients()
+                .AddLogging();
+
+        }
+
+        private static IServiceCollection AddFeature(this IServiceCollection serviceCollection, IConfiguration config)
+        {
+            // here we would group all feature related DI code
+            //serviceCollection.TryAddSingleton<AppConfig>(sp => new AppConfig()
+            //{
+            //    CartServiceUrl = config.GetValue<string>("CartServiceUrl"),
+            //});
+            return serviceCollection;
+        }
+
+        private static IServiceCollection AddHttpClients(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddHttpClient<IBookingReaderClient, BookingReaderClient>((client) =>
+            {
+                // add the required headers keys tokens and other specific http client stuff
+                //var config = provider.GetService<AppConfig>();
+
+                //client.BaseAddress = new Uri(config.CartServiceUrl);
+            });
+
+            return serviceCollection;
+        }
+    }
+}
