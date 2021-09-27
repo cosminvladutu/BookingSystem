@@ -4,39 +4,29 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace BookingGatewayClient
 {
     public static class HttpFunctions
     {
-        private const string inputNotGivenErrorMessage = "Input not given";
         private const string inputInvalidErrorMessage = "Input not valid";
 
         [FunctionName(nameof(HttpBookingClientStarter))]
-        public static async Task<IActionResult> HttpBookingClientStarter(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req,
+        public static async Task<HttpResponseMessage> HttpBookingClientStarter(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestMessage req,
             [DurableClient] IDurableOrchestrationClient starter,
             ILogger log)
         {
-            string userIdParam;
-            try
-            {
-                userIdParam = req.GetQueryParameterDictionary()["userId"];
-            }
-            catch (KeyNotFoundException e)
-            {
-                log.LogWarning(e.Message);
-                return new BadRequestObjectResult(inputNotGivenErrorMessage);
-            }
 
-            if (!Guid.TryParse(userIdParam, out Guid userId))
-            {
-                return new BadRequestObjectResult(inputInvalidErrorMessage);
-            }
-            string instanceId = await starter.StartNewAsync(nameof(OrchestratorFunctions.BookingOrchestrator), null, userId);
+            var reqContent = await req.Content.ReadAsStringAsync();
+
+            string instanceId = await starter.StartNewAsync(nameof(OrchestratorFunctions.BookingOrchestrator), null, reqContent);
             string startOrchestratorMessage = $"Started orchestration with ID = '{instanceId}'.";
             log.LogInformation(startOrchestratorMessage);
 

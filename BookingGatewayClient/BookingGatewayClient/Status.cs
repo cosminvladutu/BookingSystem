@@ -4,6 +4,10 @@
     {
         Starting,
         GettingBookings,
-        Completed
+        Completed,
+        GetInputAsString,
+        DeserializeInput,
+        CreatingBooking,
+        BookingCreated
     }
 }

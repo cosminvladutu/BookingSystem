@@ -2,7 +2,7 @@
 
 namespace BookingGatewayClient
 {
-    public class BookingItem
+    public class ListOfBookingsForUser
     {
         /// <summary>
         /// The list of active bookings.

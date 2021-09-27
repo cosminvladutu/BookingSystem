@@ -16,7 +16,7 @@ namespace BookingGatewayClient
         }
 
         [FunctionName(nameof(GetAllBookingForUserActivity))]
-        public async Task<BookingItem> Run([ActivityTrigger] Guid id, ILogger log)
+        public async Task<ListOfBookingsForUser> Run([ActivityTrigger] Guid id, ILogger log)
         {
             try
             {

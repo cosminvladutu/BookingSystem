@@ -5,6 +5,6 @@ namespace BookingGatewayClient
 {
     public interface IBookingReaderClient
     {
-       Task<BookingItem> ListBookingsForUser(Guid Id); 
+       Task<ListOfBookingsForUser> ListBookingsForUser(Guid Id); 
     }
 }

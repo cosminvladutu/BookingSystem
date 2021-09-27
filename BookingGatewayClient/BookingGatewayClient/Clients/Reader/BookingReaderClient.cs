@@ -13,13 +13,13 @@ namespace BookingGatewayClient
         {
             _client = client;
         }
-        public async Task<BookingItem> ListBookingsForUser(Guid id)
+        public async Task<ListOfBookingsForUser> ListBookingsForUser(Guid id)
         {
             var bookingReaderApiUrl = Environment.GetEnvironmentVariable("BookingReaderApiUrl");
             var uri = new Uri($"{bookingReaderApiUrl}{id}");
             var httpResponse = await _client.GetAsync(uri);
             var content = await httpResponse.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<BookingItem>(content);
+            return JsonConvert.DeserializeObject<ListOfBookingsForUser>(content);
         }
     }
 }
