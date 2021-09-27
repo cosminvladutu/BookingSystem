@@ -14,7 +14,7 @@ namespace BookingGatewayClient
                 .AddEnvironmentVariables()
                 .Build();
 
-            ServiceRegistrations.ConfigureServices(builder.Services, this.configuration);
+            ServiceRegistrations.ConfigureServices(builder.Services, configuration);
         }
 
     }

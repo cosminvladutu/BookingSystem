@@ -12,6 +12,9 @@ namespace BookingGatewayClient
 {
     public static class HttpFunctions
     {
+        private const string inputNotGivenErrorMessage = "Input not given";
+        private const string inputInvalidErrorMessage = "Input not valid";
+
         [FunctionName(nameof(HttpBookingClientStarter))]
         public static async Task<IActionResult> HttpBookingClientStarter(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req,
@@ -26,15 +29,16 @@ namespace BookingGatewayClient
             catch (KeyNotFoundException e)
             {
                 log.LogWarning(e.Message);
-                return new BadRequestObjectResult("Input not given");
+                return new BadRequestObjectResult(inputNotGivenErrorMessage);
             }
 
             if (!Guid.TryParse(userIdParam, out Guid userId))
             {
-                return new BadRequestObjectResult("Input not valid");
+                return new BadRequestObjectResult(inputInvalidErrorMessage);
             }
             string instanceId = await starter.StartNewAsync(nameof(OrchestratorFunctions.BookingOrchestrator), null, userId);
-            log.LogInformation($"Started orchestration with ID = '{instanceId}'.");
+            string startOrchestratorMessage = $"Started orchestration with ID = '{instanceId}'.";
+            log.LogInformation(startOrchestratorMessage);
 
             return starter.CreateCheckStatusResponse(req, instanceId);
         }
