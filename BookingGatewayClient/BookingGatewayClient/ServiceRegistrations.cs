@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace BookingGatewayClient
 {
@@ -9,14 +8,13 @@ namespace BookingGatewayClient
         public static void ConfigureServices(IServiceCollection builderServices, IConfiguration configuration)
         {
             builderServices
-                .AddHttpClients()
-                .AddLogging();
-
+                .AddHttpClients();
         }
 
         private static IServiceCollection AddHttpClients(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddHttpClient<IBookingReaderClient, BookingReaderClient>();
+            serviceCollection.AddHttpClient<IBookingWriterClient, BookingWriterClient>();
 
             return serviceCollection;
         }

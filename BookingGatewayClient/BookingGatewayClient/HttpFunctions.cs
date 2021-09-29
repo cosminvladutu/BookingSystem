@@ -4,6 +4,8 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -11,7 +13,7 @@ namespace BookingGatewayClient
 {
     public static class HttpFunctions
     {
-        private const string inputInvalidErrorMessage = "Input not valid";
+        private const string inputInvalidErrorMessage = "Input error";
 
         [FunctionName(nameof(HttpBookingClientStarter))]
         public static async Task<IActionResult> HttpBookingClientStarter(
@@ -19,10 +21,21 @@ namespace BookingGatewayClient
             [DurableClient] IDurableOrchestrationClient starter,
             ILogger log)
         {
-            //valitate & deserialize
-            var reqContent = await new StreamReader(req.Body).ReadToEndAsync();
+            string reqContent;
+            CreateBooking booking;
 
-            string instanceId = await starter.StartNewAsync(nameof(OrchestratorFunctions.BookingOrchestrator), null, reqContent);
+            try
+            {
+                reqContent = await new StreamReader(req.Body).ReadToEndAsync();
+                booking = JsonConvert.DeserializeObject<CreateBooking>(reqContent);
+            }
+            catch (Exception ex)
+            {
+                log.LogError(ex.Message);
+                return new BadRequestObjectResult("inputInvalidErrorMessage");
+            }
+
+            string instanceId = await starter.StartNewAsync(nameof(OrchestratorFunctions.BookingOrchestrator), null, booking);
             string startOrchestratorMessage = $"Started orchestration with ID = '{instanceId}'.";
             log.LogInformation(startOrchestratorMessage);
 
