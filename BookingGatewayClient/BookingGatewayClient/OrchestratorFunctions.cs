@@ -33,7 +33,9 @@ namespace BookingGatewayClient
 
             var createRequest = new DurableHttpRequest(HttpMethod.Post,
                 new Uri(url), headers, JsonConvert.SerializeObject(booking));
+         
             DurableHttpResponse restartResponse = await context.CallHttpAsync(createRequest);
+            
             context.SetCustomStatus(Status.BookingCreated.ToString());
 
             context.SetCustomStatus(Status.GettingBookings.ToString());
